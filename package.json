@@ -1,0 +1,11 @@
+{
+  "name": "test_service",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "reset.css": "^2.0.2"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
+}
