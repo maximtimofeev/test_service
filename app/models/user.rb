@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   after_create :send_admin_mail
 
+  has_one :filter
   has_many :comments
   has_many :commented_events, through: :comments, source: :event
 

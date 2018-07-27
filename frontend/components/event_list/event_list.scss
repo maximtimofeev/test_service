@@ -1,3 +1,7 @@
+.events-head {
+  display: flex;
+  justify-content: space-between;
+}
 .event-block {
   padding: 0 0 20px;
   margin-bottom: 20px;
@@ -15,6 +19,14 @@
   }
   .event-footer {
 
+    .event-city {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .event-date {
+      display: flex;
+      margin-bottom: 10px;
+    }
     .event-topics {
       display: flex;
       flex-wrap: wrap;

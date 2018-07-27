@@ -1,9 +1,13 @@
-- Event.all.map do |event|
+- @events.map do |event|
   article.event-block
     = link_to event.name, event_path(event), { class: 'event-header' }
     .event-description
       = event.description
     .event-footer
+      .event-city
+        = "City: #{event.city}"
+      .event-date
+        = "Starts: #{event.start_date}"
       .event-topics
         - event.topics.each do |topic|
           span.event-topic

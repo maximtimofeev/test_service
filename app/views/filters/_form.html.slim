@@ -1,0 +1,21 @@
+= form_for @filter do |f|
+  - if @filter.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@filter.errors.count, "error")} prohibited this filter from being saved:"
+      ul
+        - @filter.errors.full_messages.each do |message|
+          li = message
+  .field
+    = f.label :start_date
+    = f.date_field :start_date
+  .field
+    = f.label :end_date
+    = f.date_field :end_date
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :topics
+    = f.text_field :topics
+  = f.hidden_field :user_id
+  .actions = f.submit

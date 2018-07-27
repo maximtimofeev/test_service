@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :events, except: :index
   resources :comments, except: :index
+  resources :filters
   root 'app#index'
 
   get 'app/index'
