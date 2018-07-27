@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  after_create :send_admin_mail
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,4 +9,10 @@ class User < ApplicationRecord
   validates :name, :password, :email, presence: true
   validates :name, length: { minimum: 3, maximum: 16 }
   validates :name, uniqueness: true
+
+  private
+
+  def send_admin_mail
+    UserMailer.send_new_user_message(self).deliver
+  end
 end

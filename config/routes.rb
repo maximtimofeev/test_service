@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # resources :users
+  resources :events
   root 'app#index'
 
   get 'app/index'
