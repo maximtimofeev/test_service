@@ -1,0 +1,10 @@
+section.event-comments
+  h2
+    = @comments.any? ? 'Comments:' : 'No comments'
+  - @comments.each do |comment|
+    .event-comment
+      .comment-author
+        = "#{comment.user.name}:"
+      .comment-text
+        = comment.body
+

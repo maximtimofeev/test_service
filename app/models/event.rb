@@ -2,6 +2,9 @@ class Event < ApplicationRecord
   has_many :topicables
   has_many :topics, through: :topicables
 
+  has_many :comments
+  has_many :commentators, through: :comments, source: :user
+
   validates :name, :description, presence: true
   validates :start_date, :end_date, presence: true
 

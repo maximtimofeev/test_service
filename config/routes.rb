@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  # resources :users
-  resources :events
+
+  resources :events, except: :index
+  resources :comments, except: :index
   root 'app#index'
 
   get 'app/index'

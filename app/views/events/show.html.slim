@@ -1,5 +1,16 @@
 p#notice = notice
 
+article.event-block
+  = @event.name
+  .event-description
+    = @event.description
+  .event-footer
+    .event-topics
+      - @event.topics.each do |topic|
+        span.event-topic
+          = topic.name
+= render 'components/comment_list/comments_list'
+= link_to 'Add_comment', new_comment_path(event_id: @event.id, user_id: current_user.id)
 
 => link_to 'Edit', edit_event_path(@event)
 '|

@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   after_create :send_admin_mail
 
+  has_many :comments
+  has_many :commented_events, through: :comments, source: :event
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
