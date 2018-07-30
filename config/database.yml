@@ -83,5 +83,5 @@ test:
 production:
   <<: *default
   database: test_service_production
-  username: test_service
-  password: <%= ENV['TEST_SERVICE_DATABASE_PASSWORD'] %>
+  username: <%= ENV['db_user'] %>
+  password: <%= ENV['db_password'] %>
