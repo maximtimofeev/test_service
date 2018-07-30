@@ -1,0 +1,49 @@
+html, body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body {
+  flex-shrink: 0;
+  align-items: center;
+  font-family: Helvetica, sans-serif;
+
+  header, main, footer {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    width: 768px;
+  }
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    background: #b8e459;
+  }
+  main {
+    flex-direction: column;
+    flex: 1;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background: #f8f8f8;
+  }
+  footer {
+    height: 30px;
+    background: #b8e459;
+  }
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+.field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  label {
+    width: 100px;
+  }
+}
+.actions {
+  margin-bottom: 10px;
+}

@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
+
+  resources :events, except: :index
+  resources :comments, except: :index
+  resources :filters
+  root 'app#index'
+
+  get 'app/index'
+
+  mount ActionCable.server => '/cable'
 end

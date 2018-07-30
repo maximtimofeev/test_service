@@ -1,0 +1,30 @@
+#message {
+  position: relative;
+  .message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  &:hover {
+    #detail-message {
+      display: flex;
+    }
+  }
+  #detail-message {
+    position: absolute;
+    display: none;
+    width: 100px;
+    padding: 5px 10px;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: default;
+    z-index: 10;
+  }
+}

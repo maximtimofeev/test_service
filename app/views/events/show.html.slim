@@ -1,0 +1,23 @@
+p#notice = notice
+
+article.event-block
+  .event-header
+    = @event.name
+  .event-description
+    = @event.description
+  .event-footer
+    .event-city
+      = "City: #{@event.city}"
+    .event-date
+      = "Starts: #{@event.start_date}"
+    .event-date
+      = "Ends: #{@event.end_date}"
+    .event-topics
+      - @event.topics.each do |topic|
+        span.event-topic
+          = topic.name
+= render 'components/comment_list/comments_list'
+
+- if user_signed_in?
+  = link_to 'Add_comment', new_comment_path(event_id: @event.id, user_id: current_user.id)
+  => link_to 'Edit', edit_event_path(@event)

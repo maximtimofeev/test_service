@@ -1,0 +1,17 @@
+- unless @filter.nil?
+  .filter-block
+    .filter-item Current filter:
+    .filter-item
+      = "City: #{@filter.city}"
+    .filter-item
+      = "Date from: #{@filter.start_date}"
+    .filter-item
+      = "Date to: #{@filter.end_date}"
+    .filter-item
+      = "Topics: #{@filter.topics}"
+    = link_to 'Edit', edit_filter_path(@filter)
+    br
+    = button_to 'Delete', @filter, method: :delete
+- else
+  .filter-block
+    = link_to 'Add filter', new_filter_path(user_id: current_user.id)
