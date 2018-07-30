@@ -12,8 +12,7 @@ body {
     position: relative;
     display: flex;
     flex-shrink: 0;
-    max-width: 1200px;
-    min-width: 768px;
+    width: 768px;
   }
   header {
     flex-direction: row;
@@ -35,4 +34,16 @@ body {
   h1 {
     margin-bottom: 10px;
   }
+}
+.field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  label {
+    width: 100px;
+  }
+}
+.actions {
+  margin-bottom: 10px;
 }

@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @comments = @event.comments.order(:created_at)
+    create_notification @event
   end
 
   # GET /events/new
@@ -29,6 +30,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        create_notification(@event)
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -63,13 +65,36 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:name, :description, :city, :start_date, :end_date, :all_topics)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:name, :description, :city, :start_date, :end_date, :all_topics)
+  end
+
+  def create_notification(event)
+    message = 'New event by you filter'
+    Filter.all.where(load_event_params(event)).each do |filter|
+      if !(filter.start_date.nil? && filter.end_date.nil?)
+        if filter.start_date <= event.start_date && filter.end_date >= event.start_date
+          Notification.create(body: message, user_id: filter.user_id, is_active: false)
+          ActionCable.server.broadcast 'notify', message: message
+        end
+      else
+        Notification.create(body: message, user_id: filter.user_id, is_active: false)
+        ActionCable.server.broadcast 'notify', message: message
+      end
     end
+  end
+
+  def load_event_params(event)
+    params = {}
+    params[:city] = [event.city, ''] unless event.city.empty?
+    params[:topics] = [event.all_topics.tr(',', ''), '']
+    params
+  end
 end

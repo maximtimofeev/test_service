@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_one :filter
   has_many :comments
   has_many :commented_events, through: :comments, source: :event
+  has_many :notifications
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

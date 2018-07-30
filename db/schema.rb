@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_27_123027) do
+ActiveRecord::Schema.define(version: 2018_07_30_123007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 2018_07_27_123027) do
     t.index ["user_id"], name: "index_filters_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "body"
+    t.bigint "user_id"
+    t.boolean "is_active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "topicables", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "topic_id"
@@ -78,6 +87,7 @@ ActiveRecord::Schema.define(version: 2018_07_27_123027) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.boolean "is_admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
   end
@@ -85,6 +95,7 @@ ActiveRecord::Schema.define(version: 2018_07_27_123027) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "filters", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "topicables", "events"
   add_foreign_key "topicables", "topics"
 end

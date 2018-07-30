@@ -8,6 +8,8 @@
         = "City: #{event.city}"
       .event-date
         = "Starts: #{event.start_date}"
+      .event-date
+        = "Ends: #{event.end_date}"
       .event-topics
         - event.topics.each do |topic|
           span.event-topic

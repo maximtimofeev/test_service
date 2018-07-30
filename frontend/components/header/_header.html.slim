@@ -1,6 +1,11 @@
 .header 
-  = link_to 'Events', root_path
+  .main-link
+    = link_to 'Events', root_path
+  - if user_signed_in?
+    .header-link
+      = link_to 'Add new', new_event_path
 .auth-block
+  = c('message', message: @message)
   - if user_signed_in?
     .auth-item Hello, #{current_user.name}
     .auth-item = link_to 'Log out', destroy_user_session_path, methos: :delete
