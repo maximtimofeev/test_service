@@ -1,3 +1,7 @@
+Topicable.destroy_all
+Topic.destroy_all
+Event.destroy_all
+
 hash_events = 10.times.map do
   {
     name: Faker::Fallout.character,
