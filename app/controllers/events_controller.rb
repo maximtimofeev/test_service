@@ -11,7 +11,6 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @comments = @event.comments.order(:created_at)
-    create_notification @event
   end
 
   # GET /events/new
