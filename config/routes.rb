@@ -7,6 +7,4 @@ Rails.application.routes.draw do
   root 'app#index'
 
   get 'app/index'
-
-  mount ActionCable.server => '/cable'
 end
